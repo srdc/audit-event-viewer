@@ -1,7 +1,0 @@
-{
-  "pds_path" : "http://127.0.0.1:8080/fhir",
-  "auth_server_path" : "http://127.0.0.1:8081/api",
-  "auth_client_id" : "authorization_client",
-  "redirect_uri" : "onauth-manager/home",
-  "auth_manager_root" : "/onauth-manager"
-}

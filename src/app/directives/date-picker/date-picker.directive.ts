@@ -28,10 +28,18 @@ export class DatePickerDirective implements OnInit {
     };
 
     this.inputField.addEventListener('focusout', function (e) {
-      if ([].indexOf.call(self.datePicker.getElementsByClassName('dp'), e.relatedTarget) === -1) {
+      if (!e.relatedTarget) {
         self.datePicker.style.display = 'none';
       } else {
-        setTimeout(function() {  self.datePicker.style.display = 'none'; }, 100);
+        let elmt = e.relatedTarget.parentElement;
+        while (elmt) {
+          if (elmt === self.el.nativeElement) {
+            self.inputField.focus();
+            break;
+          }
+          elmt = elmt.parentElement;
+        }
+        if (!elmt) { self.datePicker.style.display = 'none'; }
       }
     });
 

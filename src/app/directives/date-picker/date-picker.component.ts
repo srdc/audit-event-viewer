@@ -90,7 +90,8 @@ export class DatePickerComponent implements OnInit, OnChanges {
     }
   }
 
-  nextMonth(): void {
+  nextMonth(event): void {
+    if (event) { event.preventDefault(); }
     this.month += 1;
     if (this.month === 12) {
       this.month = 0; this.year += 1;
@@ -98,7 +99,8 @@ export class DatePickerComponent implements OnInit, OnChanges {
     this.setCalendar();
   }
 
-  prevMonth(): void {
+  prevMonth(event): void {
+    if (event) { event.preventDefault(); }
     this.month -= 1;
     if (this.month === -1) {
       this.month = 11; this.year -= 1;
@@ -106,12 +108,14 @@ export class DatePickerComponent implements OnInit, OnChanges {
     this.setCalendar();
   }
 
-  nextYear(): void {
+  nextYear(event): void {
+    if (event) { event.preventDefault(); }
     this.year += 1;
     this.setCalendar();
   }
 
-  prevYear(): void {
+  prevYear(event): void {
+    if (event) { event.preventDefault(); }
     this.year -= 1;
     this.setCalendar();
   }

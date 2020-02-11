@@ -1,6 +1,6 @@
 <div class="date-picker">
-  <button class="dp year-arrow" (click)="prevYear()">&lt;</button><button class="dp year">{{year}}</button><button class="dp year-arrow" (click)="nextYear()">&gt;</button>
-  <button class="dp month-arrow" (click)="prevMonth()">&lt;</button><button class="dp month">{{'DATE_PICKER.' + months[month] | translate}}</button><button class="dp month-arrow" (click)="nextMonth()">&gt;</button>
+  <button class="dp year-arrow" (click)="prevYear($event)">&lt;</button><button class="dp year">{{year}}</button><button class="dp year-arrow" (click)="nextYear($event)">&gt;</button>
+  <button class="dp month-arrow" (click)="prevMonth($event)">&lt;</button><button class="dp month">{{'DATE_PICKER.' + months[month] | translate}}</button><button class="dp month-arrow" (click)="nextMonth($event)">&gt;</button>
   <div class="dp day-names">
     <span>{{'DATE_PICKER.ABBR_DAY_SU' | translate}}</span><span>{{'DATE_PICKER.ABBR_DAY_M' | translate}}</span><span>{{'DATE_PICKER.ABBR_DAY_TU' | translate}}</span><span>{{'DATE_PICKER.ABBR_DAY_W' | translate}}</span><span>{{'DATE_PICKER.ABBR_DAY_TH' | translate}}</span><span>{{'DATE_PICKER.ABBR_DAY_F' | translate}}</span><span>{{'DATE_PICKER.ABBR_DAY_SA' | translate}}</span>
   </div>

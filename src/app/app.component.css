@@ -1,0 +1,80 @@
+/*body,
+div,
+label,
+button {
+ font-size: 12px !important;
+}*/
+
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 10px;
+  width: auto;
+}
+
+.panel {
+  margin-top: 10px;
+}
+
+label[for] {
+  cursor: pointer;
+}
+
+.check-list {
+  line-height: 25%;
+}
+
+.sub {
+  font-weight: normal;
+}
+
+a {
+  cursor: pointer;
+}
+
+.nav>li>.parent_a:focus {
+  background: transparent;
+}
+
+/*
+.fullWidth {
+  width: 100% !important;
+}*/
+/*
+.contentMenu {
+  display: inline-block;
+  width: calc(100% - 310px);
+  vertical-align:top;
+  height: calc(100vh - 65px) !important;
+  overflow-y: scroll;
+}*/
+
+.regular-background {
+  background: #fff;
+}
+
+.actions {
+  float: right;
+}
+
+.hidden_li {
+  display: none;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.flag-icon {
+  margin-right: 5px;
+}

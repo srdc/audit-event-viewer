@@ -1,0 +1,84 @@
+.date-picker {
+  width: 200px;
+  position: absolute;
+  z-index: 999;
+  left: 100%;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);;
+  -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);;
+}
+
+.dp {
+  margin: 0 !important;
+}
+
+button.dp{
+  /* border: 1px solid #cccccc; */
+  border: none;
+}
+
+button.dp[disabled] {
+  /*background-color: #e6e6e6;*/
+}
+
+.year, .month, .year-arrow, .month-arrow, .day-names {
+  height: 20px;
+  /*background-color: white;*/
+  background-color: #3b6bcc;
+  color: white;
+}
+
+.year-arrow {
+  width: 40px;
+}
+
+
+.year {
+  width: 120px;
+}
+
+.month-arrow {
+  width: 40px;
+}
+
+.month {
+  width: 120px;
+}
+
+.day-names {
+  width: 200px;
+  color: white;
+}
+
+.day-names span{
+  display: inline-block;
+  width: 28.57px !important;
+  text-align: center;
+  padding-top: 3px;
+  /*background-color: #666666;*/
+  background-color: rgba(55, 96, 179, 0.78);
+  font-family: monospace;
+  /*font-weight: bold;*/
+}
+
+.days {
+  background-color: #4884fa;
+}
+
+.day {
+  width: 28.57px;
+  height: 28.57px;
+  vertical-align: middle;
+  border-radius: 5px;
+  background-color: #4884fa;
+  color: white;
+}
+
+.day.selected {
+  background-color: #3760b3 !important;
+  color: white;
+}
+
+.day.exists {
+  background-color: #4884fa;
+}

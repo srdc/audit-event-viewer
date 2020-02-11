@@ -1,0 +1,140 @@
+/* You can add global styles to this file, and also import other style files */
+html  {
+    height: 100%;
+}
+
+body  {
+    height: 100%;
+}
+
+thead {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    font-weight: bold;
+}
+
+/* Green buttons color */
+.btn-success {
+    color: #fff;
+    background-color: #21ba45;
+}
+  
+/* Font size of each panel title */
+.panel-title {
+    font-size: 16px;
+}
+
+*{
+    font-family: 'Poppins', sans-serif; /* ahu */
+}
+
+.alert {
+    margin: 0;
+}
+
+.table {
+    text-align: center;
+    padding: 10px;
+}
+
+.table > thead > tr > th {
+    text-align: center;
+    padding: 10px;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+    padding: 10px;
+}
+
+*[role="form"] {
+    max-width: 530px;
+    padding: 5px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+}
+.dimmer {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 100vh;
+    z-index: 1000000;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+th {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+table > tbody > .hide_wanim {
+    visibility: collapse;
+    opacity: 0;
+    transition: visibility 1s, opacity 0.5s;
+}
+
+table > tbody > .hide_wanim > td {
+    border-top: 0px;
+}
+
+table > tbody > .hide_wanim > th {
+    border-top: 0px;
+}
+
+table > tbody > .show_wanim > td {
+    border-top: 0px;
+}
+
+table > tbody > .show_wanim > th {
+    border-top: 0px;
+}
+
+table > tbody > .show_wanim {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 0.5s;
+    transition-delay: 1.0s;
+}
+
+@media screen and (max-width: 500px) {
+    .container-fluid {
+        padding: 0px;
+    }
+    #page-wrapper {
+        padding: 0px;
+    }
+    .page-header {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+    td:hover, td:focus {
+        overflow-x: visible;
+        overflow-y: hidden;
+        text-overflow: unset;
+        white-space: nowrap;
+        height:auto; 
+    }
+    th:hover, td:focus {
+        overflow-x: visible; 
+        overflow-y: hidden;
+        text-overflow: unset;
+        white-space: nowrap;
+        height:auto;
+    }
+    table {
+        table-layout: fixed;
+    }
+}

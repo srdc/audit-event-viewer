@@ -1,0 +1,70 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "power2dm-loginprovider"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/metismenu/dist/metisMenu.min.css",
+        "../node_modules/startbootstrap-sb-admin-2/dist/css/sb-admin-2.min.css",
+        "./assets/font-awesome-4.7.0/css/font-awesome.min.css",
+        "../node_modules/flag-icon-css/css/flag-icon.min.css",
+        "./assets/highlightjs/vs.css",
+        "./styles.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/metismenu/dist/metisMenu.min.js",
+        "../node_modules/startbootstrap-sb-admin-2/dist/js/sb-admin-2.min.js",
+        "./assets/highlightjs/highlight.pack.js"
+      ],
+      "environmentSource" : "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "files": "src/**/*.ts",
+      "project": "src/tsconfig.json"
+    },
+    {
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "serve": {
+      "port": 4200,
+      "host": "127.0.0.1"
+    }
+  }
+}

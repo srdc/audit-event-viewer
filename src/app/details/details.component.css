@@ -1,0 +1,8 @@
+.table > thead > tr > th {
+    text-align: inherit;
+}
+
+.table-collapse  {
+    width: 1px;
+    white-space: nowrap;
+}

@@ -1,0 +1,39 @@
+<div class="regular-background" style="height: auto !important; min-height: 100%">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <!-- Navbar header where company icon exists -->
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/"><img src="assets/images/c3c.png" alt="SRDC"></a>
+    </div>
+    <!-- Navbar top right menu -->
+    <ul class="nav navbar-top-links navbar-right">
+      <!-- Hide top menus except language selection if side menu is not active -->
+      <li *ngFor="let parentItem of config.getMenuItems()" [ngClass]="{dropdown: parentItem.children}">
+        <!-- Check if the menu element(non language) has children, if has provide dropdown menu -->
+        <a *ngIf="parentItem.children && parentItem.menuId !== 'language'" class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <i [class]="parentItem.icon"></i>{{'MENU_DEFINITION.' + parentItem.menuId | translate}}<i style="margin-left: 4px" class="fa fa-caret-down"></i>
+        </a>
+        <!-- Check if the top menu element is language menu element to provide external representation -->
+        <a *ngIf="parentItem.children && parentItem.menuId === 'language'" class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <i [class]="parentItem.icon"></i>{{'MENU_DEFINITION.' + config.getLocaleConfiguration() | translate}}<i style="margin-left: 4px" class="fa fa-caret-down"></i>
+        </a>
+        <ul *ngIf="parentItem.children" class="dropdown-menu">
+          <li *ngFor="let childItem of parentItem.children">
+            <a *ngIf="parentItem.menuId !== 'language'" [routerLink]="childItem.routerLink"><i [class]="childItem.icon"></i>{{'MENU_DEFINITION.' + childItem.menuId | translate}}</a>
+            <a *ngIf="parentItem.menuId === 'language'" (click)="config.setLanguage(childItem.menuId)"><i [class]="childItem.icon"></i>{{'MENU_DEFINITION.' + childItem.menuId | translate}}</a>
+          </li>
+        </ul>
+        <!-- Menu element has no children act as button -->
+        <a *ngIf="!parentItem.children" [routerLink]="parentItem.routerLink"><i [class]="parentItem.icon"></i>{{'MENU_DEFINITION.' + parentItem.menuId | translate}}</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="regular-background" style="height: 100%;">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<div hidden="true" id="dim" class="dimmer">
+  <i class="fa fa-asterisk fa-spin fa-3x fa-fw"></i>
+  <div>{{'COMMON.LOADING' | translate}}</div>
+</div>

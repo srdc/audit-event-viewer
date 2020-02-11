@@ -1,0 +1,174 @@
+<div class="col-lg-12" style="padding: 10px">
+  <div class="row">
+    <div style="min-height: calc(100vh - 70px); border-right: 1px solid #ccc;" class="col-lg-2">
+      <form role="form">
+        <div class="form-group">
+          <label>{{'RECORDS.DATE_FROM' | translate}}</label>
+          <div appDatePicker class="input-group">
+            <input class="form-control" name="from" [(ngModel)]="from" [placeholder]="'COMMON.YEAR_MONTH_DAY' | translate">
+            <app-date-picker [date]="from"  (dateUpdated)="setFrom($event)"> </app-date-picker>
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{'RECORDS.DATE_TO' | translate}}</label>
+          <div appDatePicker class="input-group">
+            <input class="form-control" name="to" [(ngModel)]="to" [placeholder]="'COMMON.YEAR_MONTH_DAY' | translate">
+            <app-date-picker [minDate]="from" [date]="to"  (dateUpdated)="setTo($event)"></app-date-picker>
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="count">{{'RECORDS.ENTRY_COUNT' | translate}}</label>
+          <select class="form-control" [(ngModel)]="count" appDropdown id="count" name="count">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <!--label>&nbsp;</label-->
+        <button class="btn btn-success btn-block" (click)="search()"><i class="fa fa-search"></i> {{'RECORDS.SEARCH' | translate}}</button>
+        <hr class="divider">
+        <div class="form-group">
+          <label>{{'RECORDS.FILTERS' | translate}}</label>
+        </div>
+        <hr class="divider">
+        <div class="form-group">
+          <input (change)="toggleFilters('crude')" [(ngModel)]="toggleAll.crude" type="checkbox" id="operations" name="operations" >
+          <label for="operations">{{'RECORDS.FILTERS_OPERATION' | translate}}</label>
+        </div>
+        <div class="checkbox">
+          <label for="create">
+            <input [(ngModel)]="filter.crude.C" name="create" id="create"  type="checkbox">
+            {{'RECORDS.OPERATION_CREATE' | translate}}
+          </label>
+        </div>
+        <div class="checkbox">
+          <label for="read">
+            <input [(ngModel)]="filter.crude.R" name="read" id="read" type="checkbox">
+            {{'RECORDS.OPERATION_READ' | translate}}
+          </label>
+        </div>
+        <div class="checkbox">
+          <label for="update">
+            <input [(ngModel)]="filter.crude.U" name="update" id="update"  type="checkbox">
+            {{'RECORDS.OPERATION_UPDATE' | translate}}
+          </label>
+        </div>
+        <div class="checkbox">
+          <label for="delete">
+            <input [(ngModel)]="filter.crude.D" name="delete" id="delete"  type="checkbox">
+            {{'RECORDS.OPERATION_DELETE' | translate}}
+          </label>
+        </div>
+        <div class="checkbox">
+          <label for="execute">
+            <input [(ngModel)]="filter.crude.E" name="execute" id="execute" type="checkbox">
+            {{'RECORDS.OPERATION_EXECUTE' | translate}}
+          </label>
+        </div>
+        <hr class="divider">
+        <div class="form-group">
+          <input (change)="toggleFilters('agent')" [(ngModel)]="toggleAll.agent" type="checkbox" id="participants" name="participants">
+          <label for="participants">{{'RECORDS.FILTERS_PARTICIPANT' | translate}}</label>
+        </div>
+        <div *ngFor="let key of filter.agent | getKeys" class="field">
+          <div class="checkbox">
+            <label [attr.for]="key">
+              <input [(ngModel)]="filter.agent[key]" name="{{key}}" [attr.id]="key" type="checkbox">
+              {{key}}
+            </label>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="form-group">
+          <input (change)="toggleFilters('outcome')" [(ngModel)]="toggleAll.outcome" type="checkbox" id="outcomes" name="outcomes">
+          <label for="outcomes">{{'RECORDS.FILTERS_OUTCOME' | translate}}</label>
+        </div>
+        <div *ngFor="let key of filter.outcome | getKeys" class="field">
+          <div class="checkbox">
+            <label [attr.for]="'outcome-' + key">
+              <input [(ngModel)]="filter.outcome[key]" name="{{key}}" [attr.id]="'outcome-' + key"  type="checkbox">
+              {{outcomeDisplay[key]}}
+            </label>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="form-group">
+          <input (change)="toggleFilters('object')" [(ngModel)]="toggleAll.object" type="checkbox" id="objects" name="objects" >
+          <label for="objects">{{'RECORDS.FILTERS_OBJECT' | translate}}</label>
+        </div>
+        <div *ngFor="let key of filter.object | getKeys" class="field">
+          <div class="checkbox">
+            <label [attr.for]="'object-' + key">
+              <input [(ngModel)]="filter.object[key]" name="{{'object' + key}}" [attr.id]="'object-' + key" type="checkbox">
+              {{key}}
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+
+    <div class="col-lg-10 text-center">
+        <div class="row text-left">
+            <div class="col-lg-12">
+                <h1 class="page-header"> {{'TITLE.ACCESS_LOGS' | translate}} </h1>
+            </div>
+        </div>
+
+      <div class="btn-group">
+        <button class="btn btn-success" [disabled]="!firstPage" (click)="getPage(firstPage)"><i class="fa fa-angle-double-left"></i>{{'TABLE.PAGER_FIRST' | translate}}</button>
+        <button class="btn btn-success" [disabled]="!prevPage" (click)="getPage(prevPage)"><i class="fa fa-angle-left"></i>{{'TABLE.PAGER_PREV' | translate}}</button>
+        <button class="btn btn-success" [disabled]="!selfPage" (click)="getPage(selfPage)"><i class="fa fa-refresh"></i>{{'TABLE.PAGER_REFRESH' | translate}}</button>
+        <button class="btn btn-success" [disabled]="!nextPage" (click)="getPage(nextPage)"><i class="fa fa-angle-right"></i>{{'TABLE.PAGER_NEXT' | translate}}</button>
+        <button class="btn btn-success" [disabled]="!lastPage" (click)="getPage(lastPage)"><i class="fa fa-angle-double-right"></i>{{'TABLE.PAGER_LAST' | translate}}</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover" style="margin-top:20px;">
+          <thead>
+            <tr>
+              <th>{{'RECORDS.HEADER_TIME' | translate}}</th>
+              <th>{{'DETAILS.PROPERTY_REQUESTER' | translate}}</th>
+              <th>{{'DETAILS.PROPERTY_TRIGGERING_SYSTEM' | translate}}</th>
+              <th>{{'DETAILS.PROPERTY_TARGET_SYSTEM' | translate}}</th>
+              <th>{{'DETAILS.PROPERTY_ACTION' | translate}}</th>
+              <th>{{'DETAILS.PROPERTY_DATA_OWNER' | translate}}</th>
+              <th>{{'DETAILS.PROPERTY_OBJECT' | translate}}</th>
+              <th>{{'DETAILS.PROPERTY_OUTCOME' | translate}}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let audit of auditEvents | crudeFilter:filter.crude | agentFilter:filter.agent | outcomeFilter:filter.outcome | objectFilter:filter.object">
+              <td>{{audit.date | amDateFormat:'LL hh:mmA'}}</td>
+              <td>{{audit.requestor}}</td>
+              <td><i *ngIf="audit.sourceSystem === 'triggering'" class="fa fa-rss"></i>{{audit.triggeringSystem}}</td>
+              <td><i title="source" *ngIf="audit.sourceSystem === 'target'" class="fa fa-rss"></i>{{audit.targetSystem}}</td>
+              <td>{{audit.action}}</td>
+              <td>{{audit.dataOwner || '-'}}</td>
+              <td><a target="_blank" [attr.href]="audit.objectLink">{{audit.object}}</a></td>
+              <td [attr.class]="audit.outcomeColor + ' text'">{{audit.outcome}}</td>
+              <td><a [routerLink]="'/details/' + audit.id"><i class="fa fa-list"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="padding: .5em;">
+        {{currentPage}}/{{totalPages}}
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-success" [disabled]="!firstPage" (click)="getPage(firstPage)"><i class="fa fa-angle-double-left"></i>{{'TABLE.PAGER_FIRST' | translate}}</button>
+        <button class="btn btn-success" [disabled]="!prevPage" (click)="getPage(prevPage)"><i class="fa fa-angle-left"></i>{{'TABLE.PAGER_PREV' | translate}}</button>
+        <button class="btn btn-success" [disabled]="!selfPage" (click)="getPage(selfPage)"><i class="fa fa-refresh"></i>{{'TABLE.PAGER_REFRESH' | translate}}</button>
+        <button class="btn btn-success" [disabled]="!nextPage" (click)="getPage(nextPage)"><i class="fa fa-angle-right"></i>{{'TABLE.PAGER_NEXT' | translate}}</button>
+        <button class="btn btn-success" [disabled]="!lastPage" (click)="getPage(lastPage)"><i class="fa fa-angle-double-right"></i>{{'TABLE.PAGER_LAST' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
